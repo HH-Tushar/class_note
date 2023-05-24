@@ -1,7 +1,8 @@
 import 'package:class_note/data/storage.dart';
+import 'package:class_note/ui/createNoteScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-//import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../operations.dart';
 import 'detailScreen.dart';
@@ -25,10 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            context
-                .read<SubjectOperation>()
-                .addSubject("${DateTime.now().second.toString()}");
-            print("${context.read<SubjectOperation>().getSubject.length}");
+           Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CreateNoteScreen()));
           },
           child: const Icon(Icons.add_chart_sharp),
         ),
@@ -37,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (context, subject, child) => ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
+                physics: ScrollPhysics(),
                 itemCount:
                 subject.getSubject.length,
                 itemBuilder: (context, index) {
@@ -49,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) =>  DetailsScreen(curindex: index)));
+                          builder: (_) =>  DetailsScreen(curindex: index,title: subject.getSubject[index].title,)));
                     },
                   );
                 }),

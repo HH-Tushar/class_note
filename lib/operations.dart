@@ -10,11 +10,11 @@ class SubjectOperation extends ChangeNotifier{
     return _subjectsList;
   }
 
-  void addSubject(String subTitle){
+  void addSubject(String subTitle,String ? desc){
     _subjectsList.add(
         SubjectName(
             title: subTitle,
-            shortDescription: "this is my picker",
+            shortDescription: desc??"no details have provided",
           topics: []
             )
     );
