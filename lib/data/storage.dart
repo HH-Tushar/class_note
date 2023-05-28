@@ -1,20 +1,23 @@
 import 'package:flutter/cupertino.dart';
 
 class SubjectName  {
-  final String title;
+ final String subId;
+   String ? title;
   String ? shortDescription;
-  List<Topics> ? topics;
 
-  SubjectName({required this.title,this.shortDescription,this.topics});
+
+  SubjectName({required this.subId,this.title,this.shortDescription});
 
 
 }
 
-class Topics extends ChangeNotifier{
-  final String title;
+class Topics{
+  final String subId;
+  final String topicId;
+   String title;
   String ? description;
 
-  Topics({required this.title,this.description});
+  Topics({required this.topicId,required this.subId,required this.title,this.description});
 
 
 }

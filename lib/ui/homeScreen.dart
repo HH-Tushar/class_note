@@ -40,16 +40,45 @@ class _HomeScreenState extends State<HomeScreen> {
                 subject.getSubject.length,
                 itemBuilder: (context, index) {
                   return ListTile(
+
+                    trailing: SizedBox(
+                      width: 100,
+                      child: Row(
+                        children: [
+
+                          IconButton(onPressed: (){
+                            //deleting all topics related to this subject
+                            Provider.of<TopicOperation>(context, listen: false).deleteAllTopics(subject.getSubject[index].subId);
+
+                            //deleting subject
+                            subject.deleteSubject(subject.getSubject[index].subId);
+                            },
+                            icon: const Icon(Icons.delete_sharp),
+                          ),
+                          IconButton(onPressed: (){
+                            //editing subjet
+                            subject.editSubject(subject.getSubject[index].subId,"New Dilli");
+                            },
+                            icon: const Icon(Icons.edit),
+                          ),
+                        ],
+                      ),
+                    ),
+
                     subtitle: Text(
-                        "${context.watch<SubjectOperation>().getSubject[index].title}"),
+                        "${subject.getSubject[index].shortDescription}"),
+
                     title: Text(
-                      subject.getSubject[index].title,
-                      style: TextStyle(color: Colors.red, fontSize: 20),
+                     "${ subject.getSubject[index].title}",
+                      style: const TextStyle(color: Colors.red, fontSize: 20),
                     ),
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) =>  DetailsScreen(curindex: index,title: subject.getSubject[index].title,)));
+                      Navigator.of(context).push(
+                          MaterialPageRoute(
+                          builder: (_) =>  DetailsScreen(
+                            title: subject.getSubject[index].title.toString(), subId: subject.getSubject[index].subId.toString())));
                     },
+
                   );
                 }),
 

@@ -63,7 +63,7 @@ class CreateNoteScreen extends StatelessWidget {
                         titleController.text.toString(),
                         descriptionController.text.toString());
                     print(
-                        "${context.read<SubjectOperation>().getSubject.length}");
+                        "new length of main subject is :${context.read<SubjectOperation>().getSubject.length}");
                     titleController.dispose();
                     descriptionController.dispose();
 
