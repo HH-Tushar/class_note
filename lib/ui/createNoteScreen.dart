@@ -31,8 +31,8 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: (widget.subId==null && widget.isTopic==null)? const Text("Add New Subject"):
-        (widget.subId!=null && widget.isTopic==null)?const Text("Edit Subject"):
+        title: (widget.subId==null && widget.isTopic==false)? const Text("Add New Subject"):
+        (widget.subId!=null && widget.isTopic==false)?const Text("Edit Subject"):
         (widget.subId==null && widget.isTopic==true)? const Text("Create New Topic"):const Text("Edit Topic"),
         centerTitle: true,
       ),
@@ -63,8 +63,8 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                maxLines: 8,
-                minLines: 5,
+                maxLines: 12,
+                minLines: 8,
                 textInputAction: TextInputAction.newline,
                 controller: descriptionController,
                 decoration: const InputDecoration(
@@ -76,7 +76,11 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
+            MaterialButton(
+              color: Colors.green,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                height: 50,
+                minWidth: 100,
                 onPressed: () {
 
                     if(widget.subId==null && widget.isTopic==false){
@@ -104,7 +108,7 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                     }
                     Navigator.pop(context);
                  },
-                child: const Text("Add Subject"))
+                child: widget.isTopic? const Text("Add Topic"):const Text("Add Subject"))
           ],
         ),
       )),
