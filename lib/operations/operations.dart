@@ -126,6 +126,8 @@ class TopicOperation extends ChangeNotifier{
     }
     notifyListeners();
   }
+
+
   void deleteTopic(String topicId){
 
     _topicsList.removeWhere((element) => element.topicId==topicId);
@@ -135,6 +137,7 @@ class TopicOperation extends ChangeNotifier{
     notifyListeners();
 
   }
+
   void editTopic(String topicId,String topicTitle,String description){
     _topicsList.where((element) => element.topicId==topicId).forEach((element) {
       if(topicTitle.isNotEmpty){element.title=topicTitle;}

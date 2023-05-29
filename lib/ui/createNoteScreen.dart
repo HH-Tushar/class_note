@@ -46,8 +46,8 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
             : (widget.subId != null && widget.isTopic == false)
                 ? const Text("Edit Subject")
                 : (widget.subId == null && widget.isTopic == true)
-                    ? const Text("Create New Topic")
-                    : const Text("Edit Topic"),
+                    ? const Text("Edit Topic")
+                    : const Text("Create New  Topic"),
         centerTitle: true,
       ),
       body: SafeArea(
