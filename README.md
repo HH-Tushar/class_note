@@ -1,16 +1,14 @@
-# class_note
 
-A new Flutter project.
+# Class Note App
 
-## Getting Started
+Able to handle crud operation.
+we have Multiple subjects. Sunject have multiples topics. And topics have its own details 
+For storage it use Shared Preference 
+and to manage its state its use Provider.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![App Screenshot](https://github.com/HH-Tushar/class_note/blob/main/snaps/Screenshot_1.png?raw=true)
+![App Screenshot](https://github.com/HH-Tushar/class_note/blob/main/snaps/Screenshot_3.png?raw=true)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
