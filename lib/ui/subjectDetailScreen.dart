@@ -122,10 +122,9 @@ class _SubjectDetailsScreenState extends State<SubjectDetailsScreen> {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => CreateNoteScreen(
                                           isTopic: true,
-                                          topicId:
-                                              topics.getTopics[index].topicId,
-                                      title: topics.getTopics[index].title,
-                                      description: topics.getTopics[index].description,
+                                          topicId: results[index].topicId,
+                                      title: results[index].title,
+                                      description: results[index].description,
                                         )));
                               },
                               shape: const CircleBorder(),
@@ -142,7 +141,7 @@ class _SubjectDetailsScreenState extends State<SubjectDetailsScreen> {
                                     builder: (_) => const ConfirmDelete());
                                 // confirming deleting
                                 if (confirmation) {
-                                  action(topics.getTopics[index].topicId);
+                                  action(results[index].topicId);
                                 }
                               },
                               shape: const CircleBorder(),
