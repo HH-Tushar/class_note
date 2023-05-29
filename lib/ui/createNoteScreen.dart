@@ -1,19 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../operations.dart';
+import '../operations/operations.dart';
 
-class CreateNoteScreen extends StatelessWidget {
-  const CreateNoteScreen({Key? key}) : super(key: key);
+class CreateNoteScreen extends StatefulWidget {
+   String? subId;
+  String? topicId;
+  final bool isTopic;
+  String  ?title;
+  String ? description;
+   CreateNoteScreen({Key? key,this.subId,this.topicId,required this.isTopic,this.title,this.description}) : super(key: key);
 
   @override
+  State<CreateNoteScreen> createState() => _CreateNoteScreenState();
+}
+
+class _CreateNoteScreenState extends State<CreateNoteScreen> {
+  late String? dummyTitle=widget.title ?? "";
+  late String? dummydes=widget.title==null?"":widget.description;
+  late TextEditingController titleController = TextEditingController(text: dummyTitle);
+  late TextEditingController descriptionController = TextEditingController(text:dummydes);
+@override
+  void dispose() {
+  titleController.dispose();
+  descriptionController.dispose();
+  // TODO: implement dispose
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
-    final mykey = GlobalKey<FormState>();
-    TextEditingController titleController = TextEditingController();
-    TextEditingController descriptionController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add New Subject"),
+        title: (widget.subId==null && widget.isTopic==null)? const Text("Add New Subject"):
+        (widget.subId!=null && widget.isTopic==null)?const Text("Edit Subject"):
+        (widget.subId==null && widget.isTopic==true)? const Text("Create New Topic"):const Text("Edit Topic"),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -30,7 +50,6 @@ class CreateNoteScreen extends StatelessWidget {
                   labelText: "Title",
                   border: OutlineInputBorder(),
                 ),
-                 onChanged: (value) => ValueNotifier(mykey),
                 textInputAction: TextInputAction.done,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -40,10 +59,11 @@ class CreateNoteScreen extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: TextFormField(maxLines: 8,
+              child: TextFormField(
+                maxLines: 8,
                 minLines: 5,
                 textInputAction: TextInputAction.newline,
                 controller: descriptionController,
@@ -55,20 +75,34 @@ class CreateNoteScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
                 onPressed: () {
 
-                    context.read<SubjectOperation>().addSubject(
-                        titleController.text.toString(),
-                        descriptionController.text.toString());
-                    print(
-                        "new length of main subject is :${context.read<SubjectOperation>().getSubject.length}");
-                    titleController.dispose();
-                    descriptionController.dispose();
-
+                    if(widget.subId==null && widget.isTopic==false){
+                      context.read<SubjectOperation>().addSubject(
+                        titleController.value.text.toString(),
+                        descriptionController.value.text.toString());
+                    }
+                    else if(widget.subId!=null && widget.isTopic==false){
+                      context.read<SubjectOperation>().editSubject(
+                          widget.subId!,
+                          titleController.value.text.toString(),
+                          descriptionController.value.text.toString(),);
+                    }
+                    else if(widget.topicId==null && widget.isTopic==true){
+                      context.read<TopicOperation>().addTopic(
+                          widget.subId!,
+                          titleController.value.text.toString(),
+                          descriptionController.value.text.toString(),);
+                    }
+                    else if(widget.topicId!=null && widget.isTopic==true){
+                      context.read<TopicOperation>().editTopic(
+                        widget.topicId!,
+                          titleController.value.text.toString(),
+                          descriptionController.value.text.toString(),);
+                    }
                     Navigator.pop(context);
-
                  },
                 child: const Text("Add Subject"))
           ],

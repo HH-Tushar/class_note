@@ -1,8 +1,10 @@
 import 'package:class_note/ui/homeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'operations.dart';
-void main() {
+import 'data/storage.dart';
+import 'operations/operations.dart';
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
 
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.green,
         ),
         home: const HomeScreen(),
       ),
