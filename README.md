@@ -2,13 +2,14 @@
 # Class Note App
 
 Able to handle crud operation.
-we have Multiple subjects. Sunject have multiples topics. And topics have its own details 
-For storage it use Shared Preference 
-and to manage its state its use Provider.
+For storage it use Shared Preference
+To manage its state its use Provider.
+we have Multiple subjects. Subject have multiples topics. And topics have its own details 
+
 
 
 ## Screenshots
 
-![App Screenshot](https://github.com/HH-Tushar/class_note/blob/main/snaps/Screenshot_1.png?raw=true)
-![App Screenshot](https://github.com/HH-Tushar/class_note/blob/main/snaps/Screenshot_3.png?raw=true)
+![App Screenshot](https://github.com/HH-Tushar/class_note/blob/main/snaps/Class%20Note%20%20App.jpg?raw=true)
+
 
