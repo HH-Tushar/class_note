@@ -58,6 +58,8 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 controller: titleController,
+                focusNode: FocusNode(),
+                autofocus: true,
                 decoration: const InputDecoration(
                   prefixIcon: (Icon(Icons.title)), //icon inside box
                   hintText: "Title",

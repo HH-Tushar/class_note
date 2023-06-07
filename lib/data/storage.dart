@@ -8,8 +8,6 @@ class SubjectName  {
  final String subId;
    String ? title;
   String ? shortDescription;
-
-
   SubjectName({required this.subId,this.title,this.shortDescription});
 
 
